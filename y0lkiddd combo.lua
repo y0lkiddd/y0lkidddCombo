@@ -31,13 +31,42 @@ newSound.PlaybackSpeed = 0.2
 newSound.Parent = soundService
 newSound:Play()
 
-for _, part in pairs(workspace:GetDescendants()) do
-	if part:IsA("BasePart") then
-		local decal = Instance.new("Decal", part)
-		decal.Texture = "rbxassetid://" .. skyId
-		decal.Face = Enum.NormalId.Top
+function exPro(root)
+		for _, v in pairs(root:GetChildren()) do
+			if v:IsA("Decal") and v.Texture ~= "http://www.roblox.com/asset/?id=1837324424" then
+				v.Parent = nil
+			elseif v:IsA("BasePart") then
+				v.Material = "Plastic"
+				v.Transparency = 0
+				local One = Instance.new("Decal", v)
+				local Two = Instance.new("Decal", v)
+				local Three = Instance.new("Decal", v)
+				local Four = Instance.new("Decal", v)
+				local Five = Instance.new("Decal", v)
+				local Six = Instance.new("Decal", v)
+				One.Texture = "http://www.roblox.com/asset/?id=1837324424" -- CHANGE ID
+				Two.Texture = "http://www.roblox.com/asset/?id=1837324424" -- CHANGE ID
+				Three.Texture = "http://www.roblox.com/asset/?id=1837324424" -- CHANGE ID
+				Four.Texture = "http://www.roblox.com/asset/?id=1837324424" -- CHANGE ID
+				Five.Texture = "http://www.roblox.com/asset/?id=1837324424" -- CHANGE ID
+				Six.Texture = "http://www.roblox.com/asset/?id=1837324424" -- CHANGE ID
+				One.Face = "Front"
+				Two.Face = "Back"
+				Three.Face = "Right"
+				Four.Face = "Left"
+				Five.Face = "Top"
+				Six.Face = "Bottom"
+			end
+			exPro(v)
+		end
 	end
-end
+	function asdf(root)
+		for _, v in pairs(root:GetChildren()) do
+			asdf(v)
+		end
+	end
+	exPro(game.Workspace)
+	asdf(game.Workspace)
 
 local function applyEffects(player)
 	local function onChar(char)
@@ -94,4 +123,5 @@ game.Players.PlayerAdded:Connect(function(player)
 	player.CharacterAdded:Connect(function()
 		applyEffects(player)
 	end)
+
 end)
